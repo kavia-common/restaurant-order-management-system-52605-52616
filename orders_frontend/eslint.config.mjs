@@ -25,9 +25,20 @@ export default [
         beforeEach: "readonly",
         it: "readonly",
         expect: "readonly",
-        // Browser globals
+
+        // Browser globals (used by Angular app code)
+        window: "readonly",
+        document: "readonly",
+        navigator: "readonly",
         HTMLElement: "readonly",
-        // Node.js globals
+        localStorage: "readonly",
+        sessionStorage: "readonly",
+        fetch: "readonly",
+        crypto: "readonly",
+        setTimeout: "readonly",
+        clearTimeout: "readonly",
+
+        // Node.js globals (used by SSR/server build and tooling)
         process: "readonly",
         console: "readonly"
       }

@@ -1,3 +1,27 @@
-<div class="container">
-  <h1>{{ title }}</h1>
+<div class="app-shell">
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" routerLink="/menu">Restaurant</a>
+
+      <nav class="links">
+        <a routerLink="/menu" routerLinkActive="active">Menu</a>
+        <a routerLink="/cart" routerLinkActive="active" class="cart-link">
+          Cart <span class="badge" *ngIf="cartCount()">{{ cartCount() }}</span>
+        </a>
+        <a routerLink="/sign-in" routerLinkActive="active" *ngIf="(authState$ | async)?.user === null">Sign in</a>
+        <a routerLink="/admin" routerLinkActive="active" *ngIf="(authState$ | async)?.role === 'admin'">Admin</a>
+      </nav>
+
+      <div class="right">
+        <div class="user" *ngIf="(authState$ | async)?.user as u">
+          <span class="muted">{{ u.email }}</span>
+          <button class="btn secondary tiny" (click)="signOut()">Sign out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
 </div>
